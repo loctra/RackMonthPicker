@@ -7,5 +7,5 @@ import android.support.v7.app.AlertDialog;
  */
 
 public interface OnCancelMonthDialogListener {
-    public void onCancel(AlertDialog dialog);
+    void onCancel(AlertDialog dialog);
 }

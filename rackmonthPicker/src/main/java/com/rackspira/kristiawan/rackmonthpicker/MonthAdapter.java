@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.LayerDrawable;
 import android.graphics.drawable.StateListDrawable;
+import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -24,13 +25,13 @@ import java.util.Locale;
 
 public class MonthAdapter extends RecyclerView.Adapter<MonthAdapter.MonthHolder> {
 
-    private String[] months = new String[0];
+    private String[] months;
     private OnSelectedListener listener;
     private int selectedItem = -1;
     private Context context;
     private int color;
 
-    public MonthAdapter(Context context, OnSelectedListener listener) {
+    MonthAdapter(Context context, OnSelectedListener listener) {
         this.context = context;
         this.listener = listener;
         months = new DateFormatSymbols(Locale.ENGLISH).getShortMonths();
@@ -43,17 +44,17 @@ public class MonthAdapter extends RecyclerView.Adapter<MonthAdapter.MonthHolder>
         }
     }
 
+    @NonNull
     @Override
-    public MonthHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        MonthHolder monthHolder = new MonthHolder(LayoutInflater.from(context).inflate(R.layout.item_view_month, parent, false));
-        return monthHolder;
+    public MonthHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        return new MonthHolder(LayoutInflater.from(context).inflate(R.layout.item_view_month, parent, false));
     }
 
     @Override
-    public void onBindViewHolder(MonthHolder holder, int position) {
+    public void onBindViewHolder(@NonNull MonthHolder holder, int position) {
         holder.textViewMonth.setText(months[position]);
         holder.textViewMonth.setTextColor(selectedItem == position ? Color.WHITE : Color.BLACK);
-        holder.itemView.setSelected(selectedItem == position ? true : false);
+        holder.itemView.setSelected(selectedItem == position);
     }
 
     @Override
@@ -61,19 +62,17 @@ public class MonthAdapter extends RecyclerView.Adapter<MonthAdapter.MonthHolder>
         return months.length;
     }
 
-    public void setLocale(Locale locale) {
+    void setLocale(Locale locale) {
         months = new DateFormatSymbols(locale).getShortMonths();
         notifyDataSetChanged();
     }
 
-    public void setSelectedItem(int index) {
-        if (index < 12 || index > -1) {
-            selectedItem = index;
-            notifyItemChanged(selectedItem);
-        }
+    void setSelectedItem(int index) {
+        selectedItem = index;
+        notifyItemChanged(selectedItem);
     }
 
-    public void setBackgroundMonth(int color) {
+    void setBackgroundMonth(int color) {
         this.color = color;
     }
 
@@ -82,23 +81,22 @@ public class MonthAdapter extends RecyclerView.Adapter<MonthAdapter.MonthHolder>
         notifyDataSetChanged();
     }
 
-    public int getMonth() {
+    int getMonth() {
         return selectedItem + 1;
     }
 
-    public int getStartDate() {
+    int getStartDate() {
         return 1;
     }
 
-    public int getEndDate() {
+    int getEndDate() {
         Calendar cal = Calendar.getInstance();
         cal.set(Calendar.MONTH, selectedItem + 1);
         cal.set(Calendar.DAY_OF_MONTH, selectedItem + 1);
-        int maxDay = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
-        return maxDay;
+        return cal.getActualMaximum(Calendar.DAY_OF_MONTH);
     }
 
-    public String getShortMonth() {
+    String getShortMonth() {
         return months[selectedItem];
     }
 
@@ -107,10 +105,10 @@ public class MonthAdapter extends RecyclerView.Adapter<MonthAdapter.MonthHolder>
         LinearLayout layoutMain;
         TextView textViewMonth;
 
-        public MonthHolder(View itemView) {
+        MonthHolder(View itemView) {
             super(itemView);
-            layoutMain = (LinearLayout) itemView.findViewById(R.id.main_layout);
-            textViewMonth = (TextView) itemView.findViewById(R.id.text_month);
+            layoutMain = itemView.findViewById(R.id.main_layout);
+            textViewMonth = itemView.findViewById(R.id.text_month);
             if (color != 0)
                 setMonthBackgroundSelected(color);
 

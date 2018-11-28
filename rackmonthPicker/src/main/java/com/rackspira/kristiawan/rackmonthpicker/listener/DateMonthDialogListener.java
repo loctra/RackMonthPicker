@@ -5,5 +5,5 @@ package com.rackspira.kristiawan.rackmonthpicker.listener;
  */
 
 public interface DateMonthDialogListener {
-    public void onDateMonth(int month, int startDate, int endDate, int year, String monthLabel);
+    void onDateMonth(int month, int startDate, int endDate, int year, String monthLabel);
 }

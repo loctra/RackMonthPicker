@@ -3,12 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_gravity="center"
     android:minWidth="350dp"
     android:orientation="vertical"
-    android:theme="?android:theme"
-    android:padding="20dp">
+    android:padding="20dp"
+    android:theme="?android:theme">
 
     <LinearLayout
         android:id="@+id/material_background"
@@ -38,7 +37,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif"
-                    android:text="Month Picker"
+                    android:text="@string/month_picker"
                     android:textColor="@android:color/white"
                     android:textSize="18sp"
                     android:textStyle="bold" />
@@ -48,9 +47,10 @@
             <ScrollView
                 android:id="@+id/message_content_root"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 android:layout_marginTop="10dp"
                 android:layout_weight="1"
+                tools:ignore="NestedWeights"
                 tools:layout_height="700dp">
 
                 <LinearLayout
@@ -58,28 +58,33 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:paddingLeft="24dp"
-                    android:paddingRight="23dp">
+                    android:paddingStart="24dp"
+                    android:paddingEnd="23dp">
 
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="5dp">
 
-                        <Button
+                        <ImageView
                             android:id="@+id/btn_previous"
+                            style="@style/SelectableItemBackgroundBorderless"
                             android:layout_width="25dp"
                             android:layout_height="25dp"
-                            android:background="@drawable/back" />
+                            android:src="@drawable/back"
+                            android:tint="@color/gray_dark"
+                            tools:ignore="ContentDescription" />
 
-                        <Button
+                        <ImageView
                             android:id="@+id/btn_next"
+                            style="@style/SelectableItemBackgroundBorderless"
                             android:layout_width="25dp"
                             android:layout_height="25dp"
-                            android:layout_alignParentEnd="true"
-                            android:layout_alignParentRight="true"
                             android:layout_alignParentTop="true"
-                            android:background="@drawable/forward" />
+                            android:layout_alignParentEnd="true"
+                            android:src="@drawable/forward"
+                            android:tint="@color/gray_dark"
+                            tools:ignore="ContentDescription" />
 
                         <TextView
                             android:id="@+id/text_year"
@@ -88,16 +93,16 @@
                             android:layout_centerHorizontal="true"
                             android:layout_centerVertical="true"
                             android:fontFamily="sans-serif"
-                            android:text="2016"
                             android:textColor="@color/black_de"
-                            android:textSize="18sp" />
+                            android:textSize="18sp"
+                            tools:ignore="RelativeOverlap" />
                     </RelativeLayout>
 
                     <android.support.v7.widget.RecyclerView
                         android:id="@+id/recycler_view"
-                        android:layout_gravity="center"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center">
 
                     </android.support.v7.widget.RecyclerView>
                 </LinearLayout>
@@ -108,32 +113,36 @@
             android:id="@+id/buttonLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="right"
+            android:layout_gravity="end"
             android:gravity="center_vertical"
-            android:paddingBottom="10dp"
-            android:paddingTop="16dp">
+            android:paddingTop="16dp"
+            android:paddingBottom="10dp">
 
-            <Button
+            <TextView
+                style="@style/SelectableItemBackground"
                 android:id="@+id/btn_n"
-                android:layout_width="wrap_content"
+                android:layout_width="80dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/button"
                 android:fontFamily="sans-serif"
+                android:gravity="center"
                 android:padding="10dp"
-                android:stateListAnimator="@null"
-                android:text="CANCEL"
+                android:textSize="15sp"
+                android:text="@string/cancel"
                 android:textColor="@color/color_primary" />
 
-            <Button
+            <TextView
+                style="@style/SelectableItemBackground"
                 android:id="@+id/btn_p"
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="16dp"
+                android:layout_width="80dp"
+                android:layout_marginEnd="16dp"
                 android:background="@drawable/button"
                 android:fontFamily="sans-serif"
+                android:gravity="center"
                 android:padding="10dp"
-                android:stateListAnimator="@null"
-                android:text="OK"
+                android:textSize="15sp"
+                android:text="@string/ok"
                 android:textColor="@color/color_primary" />
         </LinearLayout>
     </LinearLayout>

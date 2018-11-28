@@ -8,4 +8,6 @@
     <color name="black_de">#DE000000</color>
     <color name="color_primary">#009B4C</color>
     <color name="transparent">#00000000</color>
+    <color name="silver">#d7d8da</color>
+    <color name="gray_dark">#a3a9af</color>
 </resources>

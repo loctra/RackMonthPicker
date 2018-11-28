@@ -2,12 +2,20 @@
 <resources>
 
     <style name="ActionButton">
-        <!--<item name="android:layout_width">wrap_content</item>-->
-        <!--<item name="android:layout_height">@dimen/action_button_height</item>-->
-        <!--<item name="android:minWidth">@dimen/action_button_min_width</item>-->
-        <!--<item name="android:paddingLeft">@dimen/action_button_padding_horizontal</item>-->
-        <!--<item name="android:paddingRight">@dimen/action_button_padding_horizontal</item>-->
-        <!--<item name="android:background">@drawable/button</item>-->
-        <!--<item name="android:textSize">@dimen/action_button_text_size</item>-->
     </style>
+
+    <style name="SelectableItemTheme">
+        <item name="colorControlHighlight">@color/silver</item>
+    </style>
+
+    <style name="SelectableItemBackground">
+        <item name="android:theme">@style/SelectableItemTheme</item>
+        <item name="android:background">?selectableItemBackground</item>
+    </style>
+
+    <style name="SelectableItemBackgroundBorderless">
+        <item name="android:theme">@style/SelectableItemTheme</item>
+        <item name="android:background">?selectableItemBackgroundBorderless</item>
+    </style>
+
 </resources>
